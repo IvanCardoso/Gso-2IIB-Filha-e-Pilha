@@ -1,0 +1,98 @@
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+int const MAXTAM=1000;
+// Tamanho máximo que a fila recebe
+
+int frente, tras;
+int fila[MAXTAM];
+
+
+void fila_construtor(){
+
+	frente=0;
+	tras=(-1);
+}
+
+bool fila_vazia (){
+	if (frente>tras){
+		return true;
+	}else {
+		return false;
+		
+	}	
+
+
+}
+
+
+bool fila_cheia (){
+	if (tras>=MAXTAM-1){
+		return true;
+	}else {
+		return false;
+	}
+}
+
+bool fila_enfileirar (int valor){
+	if (fila_cheia()) {
+		return false;
+		
+	}else {
+		tras++;
+		fila[tras]=valor;
+		return true;
+	}
+	
+}
+
+bool fila_desenfileirar (int &valor){
+	if (fila_vazia()) {
+		return false;
+	}else {
+		valor=fila[frente];
+		frente++;
+		return true;
+	}
+}
+
+bool fila_get (int &valor){
+	if (fila_vazia()) {
+		return false;
+	}else {
+		valor=fila[frente];
+		return true;
+	}
+}
+
+int fila_tamanho (){
+	return (tras - frente)+1;
+}
+
+int main() {
+	int valor;
+	
+	fila_construtor();
+	fila_enfileirar(5);
+	fila_enfileirar(5);
+	fila_enfileirar(5);
+
+	
+	
+	
+	printf ("Tamanho da fila:%d \n\n", fila_tamanho());
+	
+	while (fila_desenfileirar(valor)){
+		printf ("Valor:%d\n", valor);
+	}
+	
+	printf ("\nTamanho da fila:%d\n", fila_tamanho());
+	
+	
+
+	system ("pause");
+	return 0;
+}
